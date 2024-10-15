@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import MobileNavbar from "./NavBar/MobileNavbar";
-import DesktopNavbar from "./NavBar/DesktopNavbar";
+import MobileNavbar from "./MobileNavbar";
+import DesktopNavbar from "./DesktopNavbar";
 
 const Navbar = () => {
   return (
