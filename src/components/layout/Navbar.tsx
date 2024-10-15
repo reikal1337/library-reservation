@@ -1,11 +1,24 @@
-import React from "react";
+import { NavLink } from "react-router-dom";
+
+const navList = [
+  {
+    href: "/",
+    text: "Books",
+  },
+  {
+    href: "/myreservations",
+    text: "My Reservations",
+  },
+];
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 left-0 w-full ">
-      <div>
-        <a href="/">Books</a>
-      </div>
+    <nav className="absolute top-0 left-0 w-full ">
+      <ul>
+        {navList.map((link) => (
+          <NavLink to={link.href}>{link.text}</NavLink>
+        ))}
+      </ul>
     </nav>
   );
 };
