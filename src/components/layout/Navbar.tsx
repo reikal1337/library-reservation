@@ -1,24 +1,29 @@
-import { NavLink } from "react-router-dom";
-
-const navList = [
-  {
-    href: "/",
-    text: "Books",
-  },
-  {
-    href: "/myreservations",
-    text: "My Reservations",
-  },
-];
+import { Link } from "react-router-dom";
+import MobileNavbar from "./NavBar/MobileNavbar";
+import DesktopNavbar from "./NavBar/DesktopNavbar";
 
 const Navbar = () => {
   return (
-    <nav className="absolute top-0 left-0 w-full ">
-      <ul>
-        {navList.map((link) => (
-          <NavLink to={link.href}>{link.text}</NavLink>
-        ))}
-      </ul>
+    <nav className="bg-white border-gray-200 dark:bg-gray-900">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <Link
+          to="/"
+          className="flex items-center space-x-3 rtl:space-x-reverse"
+        >
+          <img
+            src="images/logo.png"
+            className="h-8"
+            alt="Library reservation Logo"
+          />
+          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            Library Reservation
+          </span>
+        </Link>
+
+        <MobileNavbar />
+
+        <DesktopNavbar />
+      </div>
     </nav>
   );
 };
