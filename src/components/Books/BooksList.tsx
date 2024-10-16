@@ -3,9 +3,9 @@ import BookCard from "./BookCard";
 
 const BooksList = () => {
   return (
-    <ul>
+    <ul className="w-3/5 grid grid-cols-4 ">
       {bookList.map((book) => (
-        <li>
+        <li className="w-[170px] p-2 transition-shadow duration-300 hover:shadow-xl cursor-pointer">
           <BookCard
             key={book.id}
             imageSrc={book.imageSrc}

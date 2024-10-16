@@ -2,10 +2,10 @@ import BooksList from "../components/Books/BooksList";
 
 const BooksPage = () => {
   return (
-    <div className="text-5xl ">
-      BooksPage
+    <>
+      <h1 className="text-5xl mb-10">BooksPage</h1>
       <BooksList />
-    </div>
+    </>
   );
 };
 export default BooksPage;
