@@ -20,6 +20,7 @@ const BookReservationForm = ({ book }: Props) => {
     console.log("Quick Pickup:", quickPickup);
     console.log("Days:", days);
     addItem({
+      id: book.id,
       book,
       type: bookType,
       days,

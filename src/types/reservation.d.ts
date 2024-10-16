@@ -4,6 +4,7 @@ type ReservationCart = {
 };
 
 type ReservationItem = {
+  id: string;
   book: DisplayBook;
   type: BookType;
   days: number;

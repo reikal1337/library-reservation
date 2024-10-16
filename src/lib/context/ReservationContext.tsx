@@ -9,6 +9,7 @@ interface ReservationContextProps {
   state: ReservationCart;
   addItem: (item: ReservationItem) => void;
   removeItem: (id: string) => void;
+  updateTotalPrice: () => void;
 }
 
 const ReservationCart = createContext<ReservationContextProps | undefined>(
@@ -55,12 +56,17 @@ export const ReservationCartProvider: React.FC<{
   };
 
   const removeItem = async (id: string) => {
+    //should call and get price....
+
+    const price = state.totalPrice - 5;
+    dispatch({ type: "UPDATE_TOTAL_PRICE", payload: price });
+
     dispatch({ type: "REMOVE_ITEM", payload: id });
   };
 
   const updateTotalPrice = async () => {
     //call api to recieve cart price.
-    const price = state.items.length * 5;
+    const price = state.totalPrice + 5;
 
     dispatch({ type: "UPDATE_TOTAL_PRICE", payload: price });
   };

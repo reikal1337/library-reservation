@@ -25,7 +25,11 @@ const LinkList = ({
         } = { ...{ [resourceName]: item } };
 
         return (
-          <Link key={i + toLink} to={toLink + id} className={itemClassName}>
+          <Link
+            key={i + toLink + item.id}
+            to={toLink + id}
+            className={itemClassName}
+          >
             <ItemComponent {...{ [resourceName]: item }} />
           </Link>
         );
