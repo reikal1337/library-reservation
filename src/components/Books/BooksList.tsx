@@ -1,6 +1,6 @@
 import { bookList } from "./mockBookData";
 import BookListItem from "./BookListItem";
-import RegularList from "../RegularList";
+import RegularList from "../layout/RegularList";
 
 const BooksList = () => {
   return (
