@@ -1,10 +1,12 @@
-type Props = {
+type Book = {
   imageSrc: string;
   name: string;
   year: string;
 };
 
-const BookCard = ({ imageSrc, name, year }: Props) => {
+const BookListItem = ({ book }: { book: Book }) => {
+  const { imageSrc, name, year } = book;
+
   return (
     <>
       <img src={imageSrc} width={170} height={230} />
@@ -14,4 +16,4 @@ const BookCard = ({ imageSrc, name, year }: Props) => {
   );
 };
 
-export default BookCard;
+export default BookListItem;
