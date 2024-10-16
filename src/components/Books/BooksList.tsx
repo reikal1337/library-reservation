@@ -1,11 +1,12 @@
 import { bookList } from "./mockBookData";
 import BookListItem from "./BookListItem";
-import RegularList from "../layout/RegularList";
+import LinkList from "../layout/LinkList";
 
 const BooksList = () => {
   return (
     <ul className="w-3/5 grid grid-cols-4 ">
-      <RegularList
+      <LinkList
+        toLink="/book/"
         items={bookList}
         resourceName="book"
         itemComponent={BookListItem}

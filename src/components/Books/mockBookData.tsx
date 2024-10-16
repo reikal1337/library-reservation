@@ -1,6 +1,6 @@
-export const bookList = [
+export const bookList: ListItems[] = [
   {
-    id: 1,
+    id: "1",
     imageSrc:
       "https://images.thegreatestbooks.org/mett28u51a92h6yh90le1pbn8aai",
     name: "The Great Gatsby",
@@ -8,7 +8,7 @@ export const bookList = [
     type: ["book"],
   },
   {
-    id: 2,
+    id: "2",
     imageSrc:
       "https://images.thegreatestbooks.org/sbd37b2dsyuw15cv63l87biw63kv",
     name: "Ulysses",
@@ -16,7 +16,7 @@ export const bookList = [
     type: ["book"],
   },
   {
-    id: 3,
+    id: "3",
     imageSrc:
       "https://images.thegreatestbooks.org/myvbhitdua7h1etye2hvfjej2p4j",
     name: "In Search of Lost",
@@ -24,7 +24,7 @@ export const bookList = [
     type: ["book"],
   },
   {
-    id: 4,
+    id: "4",
     imageSrc:
       "https://images.thegreatestbooks.org/fzce7ac1jcmx6fi8ppnea65ct3u9",
     name: "One Hundred Years of Solitude",
@@ -32,7 +32,7 @@ export const bookList = [
     type: ["book"],
   },
   {
-    id: 5,
+    id: "5",
     imageSrc:
       "https://images.thegreatestbooks.org/azrr7j37ttxak2wmpmdoczhvd36t",
     name: "The Catcher in the Rye",

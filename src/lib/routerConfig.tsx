@@ -3,6 +3,7 @@ import BooksPage from "../pages/BooksPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import ReservationsPage from "../pages/ReservationsPage";
 import MainLayout from "../components/layout/MainLayout";
+import BookPage from "../pages/BookPage";
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +17,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "book/:bookId",
-            element: <BooksPage />,
+            element: <BookPage />,
           },
         ],
       },
