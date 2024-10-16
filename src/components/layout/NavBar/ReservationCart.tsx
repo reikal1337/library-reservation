@@ -1,25 +1,22 @@
 import { useState } from "react";
 import { useReservationCart } from "../../../lib/context/ReservationContext";
-import { bookList } from "../../Books/mockBookData";
 import ReservationCartButton from "../../buttons/ReservationCartButton";
 import NumberIndicator from "../../NumberIndicator";
 import Modal from "../Modal";
 import PrimaryButton from "../../buttons/PrimaryButton";
 
 const ReservationCart = () => {
-  const { state, addItem } = useReservationCart();
+  const { state } = useReservationCart();
   const [showModel, setShowModel] = useState(false);
 
   const handleOpenCart = () => {
-    //Should call update
-    addItem(bookList[0]);
     setShowModel(true);
   };
 
   return (
     <div className="relative bg-opacity-45 w-full ">
       <NumberIndicator
-        number={state.books.length}
+        number={state.items.length}
         addClass="absolute -right-5 -top-3 z-10 "
       />
       <ReservationCartButton

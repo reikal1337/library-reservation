@@ -23,10 +23,7 @@ const BookPage = () => {
             <BookListItem book={book[0]} />
           </div>
 
-          <BookReservationForm
-            id={Number(book[0].id)}
-            bookTypesArray={book[0].type}
-          />
+          <BookReservationForm book={book[0]} />
         </div>
       </Modal>
     </div>

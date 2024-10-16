@@ -1,22 +1,30 @@
 import React, { useState } from "react";
 import PrimaryButton from "../buttons/PrimaryButton";
 import { capitalizeFirstLetter } from "../../lib/utils/stringFormation";
+import { useReservationCart } from "../../lib/context/ReservationContext";
 
 type Props = {
-  id: number;
-  bookTypesArray: BookType[];
+  book: DisplayBook;
 };
 
-const BookReservationForm = ({ id, bookTypesArray }: Props) => {
-  const [bookType, setBookType] = useState<BookType>(bookTypesArray[0]);
+const BookReservationForm = ({ book }: Props) => {
+  const [bookType, setBookType] = useState<BookType>(book.type[0]);
   const [quickPickup, setQuickPickup] = useState<boolean>(false);
   const [days, setDays] = useState<number>(1);
+  const { addItem } = useReservationCart();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     console.log("Selected Book Type:", bookType);
     console.log("Quick Pickup:", quickPickup);
     console.log("Days:", days);
+    addItem({
+      book,
+      type: bookType,
+      days,
+      quickPickUp: quickPickup,
+    });
   };
 
   return (
@@ -30,8 +38,8 @@ const BookReservationForm = ({ id, bookTypesArray }: Props) => {
           onChange={(e) => setBookType(e.target.value as BookType)}
           className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
         >
-          {bookTypesArray.map((type) => (
-            <option key={type + id} value={type}>
+          {book.type.map((type) => (
+            <option key={type + book.id} value={type}>
               {capitalizeFirstLetter(type)}
             </option>
           ))}
