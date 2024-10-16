@@ -8,5 +8,7 @@ type DisplayBook = {
   imageSrc: string;
   name: string;
   year: string;
-  type: string[];
+  type: BookType[];
 };
+
+type BookType = "book" | "audiobook";

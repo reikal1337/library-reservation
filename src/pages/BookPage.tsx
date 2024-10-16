@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Modal from "../components/layout/Modal";
 import BookListItem from "../components/Books/BookListItem";
 import { bookList } from "../components/Books/mockBookData";
+import BookReservationForm from "../components/Books/BookReservationForm";
 
 const BookPage = () => {
   const params = useParams<{ bookId: string }>();
@@ -10,13 +11,23 @@ const BookPage = () => {
   //Should be from db..
   const book = bookList.filter((book) => book.id === params.bookId);
 
-  const handleAddtoCart = () => {};
-
   return (
     <div>
-      <Modal showModel={true} onClose={() => navigate("/")}>
-        <BookListItem book={book[0]} />
-        <button onClick={handleAddtoCart}>Add to cart</button>
+      <Modal
+        bodyClass="bg-white my-[10%] mx-auto p-5 w-[500px]  rounded-md flex justify-center items-center "
+        showModel={true}
+        onClose={() => navigate("/")}
+      >
+        <div className="flex gap-10 justify-center items-center">
+          <div className="max-w-[170px]">
+            <BookListItem book={book[0]} />
+          </div>
+
+          <BookReservationForm
+            id={Number(book[0].id)}
+            bookTypesArray={book[0].type}
+          />
+        </div>
       </Modal>
     </div>
   );

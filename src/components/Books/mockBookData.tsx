@@ -13,7 +13,7 @@ export const bookList: DisplayBook[] = [
       "https://images.thegreatestbooks.org/sbd37b2dsyuw15cv63l87biw63kv",
     name: "Ulysses",
     year: "1922",
-    type: ["book"],
+    type: ["book", "audiobook"],
   },
   {
     id: "3",
