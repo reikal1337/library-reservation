@@ -1,13 +1,13 @@
 import React, { createContext, useReducer, useContext, useMemo } from "react";
 
 type ReservationCartAction =
-  | { type: "ADD_ITEM"; payload: DisplayBook }
+  | { type: "ADD_ITEM"; payload: ReservationItem }
   | { type: "REMOVE_ITEM"; payload: string }
   | { type: "UPDATE_TOTAL_PRICE"; payload: number };
 
 interface ReservationContextProps {
   state: ReservationCart;
-  addItem: (item: DisplayBook) => void;
+  addItem: (item: ReservationItem) => void;
   removeItem: (id: string) => void;
 }
 
@@ -16,7 +16,7 @@ const ReservationCart = createContext<ReservationContextProps | undefined>(
 );
 
 const initialCartState: ReservationCart = {
-  books: [],
+  items: [],
   totalPrice: 0,
 };
 
@@ -28,12 +28,12 @@ const reservationReducer = (
     case "ADD_ITEM":
       return {
         ...state,
-        books: [...state.books, action.payload],
+        items: [...state.items, action.payload],
       };
     case "REMOVE_ITEM":
       return {
         ...state,
-        books: state.books.filter((book) => book.id !== action.payload),
+        items: state.items.filter((item) => item.book.id !== action.payload),
       };
     case "UPDATE_TOTAL_PRICE":
       return {
@@ -50,7 +50,7 @@ export const ReservationCartProvider: React.FC<{
 }> = ({ children }) => {
   const [state, dispatch] = useReducer(reservationReducer, initialCartState);
 
-  const addItem = async (item: DisplayBook) => {
+  const addItem = async (item: ReservationItem) => {
     dispatch({ type: "ADD_ITEM", payload: { ...item } });
   };
 
@@ -60,7 +60,7 @@ export const ReservationCartProvider: React.FC<{
 
   const updateTotalPrice = async () => {
     //call api to recieve cart price.
-    const price = state.books.length * 5;
+    const price = state.items.length * 5;
 
     dispatch({ type: "UPDATE_TOTAL_PRICE", payload: price });
   };

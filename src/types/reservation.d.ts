@@ -1,5 +1,5 @@
 type ReservationCart = {
-  books: DisplayBook[];
+  items: ReservationItem[];
   totalPrice: number;
 };
 
