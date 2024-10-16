@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import PrimaryButton from "../buttons/PrimaryButton";
 import { capitalizeFirstLetter } from "../../lib/utils/stringFormation";
 import { useReservationCart } from "../../lib/context/ReservationContext";
+import { useNavigate } from "react-router-dom";
+import { MAX_RESERVE_DAYS, MIN_RESERVE_DAYS } from "../../lib/constants";
 
 type Props = {
   book: DisplayBook;
@@ -12,13 +14,10 @@ const BookReservationForm = ({ book }: Props) => {
   const [quickPickup, setQuickPickup] = useState<boolean>(false);
   const [days, setDays] = useState<number>(1);
   const { addItem } = useReservationCart();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    console.log("Selected Book Type:", bookType);
-    console.log("Quick Pickup:", quickPickup);
-    console.log("Days:", days);
     addItem({
       id: book.id,
       book,
@@ -26,6 +25,7 @@ const BookReservationForm = ({ book }: Props) => {
       days,
       quickPickUp: quickPickup,
     });
+    navigate("/");
   };
 
   return (
@@ -65,8 +65,8 @@ const BookReservationForm = ({ book }: Props) => {
         </label>
         <input
           type="number"
-          min="1"
-          max="180"
+          min={MIN_RESERVE_DAYS}
+          max={MAX_RESERVE_DAYS}
           value={days}
           onChange={(e) => setDays(Number(e.target.value))}
           className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"

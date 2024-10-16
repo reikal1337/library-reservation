@@ -56,10 +56,9 @@ export const ReservationCartProvider: React.FC<{
   };
 
   const removeItem = async (id: string) => {
-    //should call and get price....
+    //should call APi to get new price....
 
-    const price = state.totalPrice - 5;
-    dispatch({ type: "UPDATE_TOTAL_PRICE", payload: price });
+    dispatch({ type: "UPDATE_TOTAL_PRICE", payload: 0 });
 
     dispatch({ type: "REMOVE_ITEM", payload: id });
   };
