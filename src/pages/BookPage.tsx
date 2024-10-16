@@ -10,10 +10,13 @@ const BookPage = () => {
   //Should be from db..
   const book = bookList.filter((book) => book.id === params.bookId);
 
+  const handleAddtoCart = () => {};
+
   return (
     <div>
       <Modal showModel={true} onClose={() => navigate("/")}>
         <BookListItem book={book[0]} />
+        <button onClick={handleAddtoCart}>Add to cart</button>
       </Modal>
     </div>
   );
