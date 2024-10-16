@@ -1,10 +1,4 @@
-type Book = {
-  imageSrc: string;
-  name: string;
-  year: string;
-};
-
-const BookListItem = ({ book }: { book: Book }) => {
+const BookListItem = ({ book }: { book: DisplayBook }) => {
   const { imageSrc, name, year } = book;
 
   return (

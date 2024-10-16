@@ -1,4 +1,4 @@
-export const bookList: ListItems[] = [
+export const bookList: DisplayBook[] = [
   {
     id: "1",
     imageSrc:
