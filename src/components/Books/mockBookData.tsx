@@ -39,4 +39,53 @@ export const bookList: DisplayBook[] = [
     year: "1951",
     type: ["book"],
   },
+  {
+    id: "6",
+    imageSrc:
+      "https://images.thegreatestbooks.org/t9epsngv7thxsjalsswqzgtnzlpu",
+    name: "Lolita",
+    year: "1955",
+    type: ["book"],
+  },
+  {
+    id: "7",
+    imageSrc:
+      "https://images.thegreatestbooks.org/oka7y4u1r23osldhnx42q9lvxtpz",
+    name: "Nineteen Eighty Four",
+    year: "1949",
+    type: ["book"],
+  },
+  {
+    id: "8",
+    imageSrc:
+      "https://images.thegreatestbooks.org/m8kb7ah2lhy960dbp473zna11wb4",
+    name: "Anna Karenina",
+    year: "1877",
+    type: ["book"],
+  },
+  {
+    id: "9",
+    imageSrc:
+      "https://images.thegreatestbooks.org/4zdrnqgrbobtunihoxvad8kxotot",
+    name: "Moby-Dick",
+    year: "1851",
+    type: ["book"],
+  },
+
+  {
+    id: "10",
+    imageSrc:
+      "https://images.thegreatestbooks.org/8lg4exp38r6236mjmp8nkx4k3k2j",
+    name: "Wuthering Heights",
+    year: "1847",
+    type: ["book"],
+  },
+  {
+    id: "11",
+    imageSrc:
+      "https://images.thegreatestbooks.org/hfiptkzo82hkprq8p4yfxoxb8pns",
+    name: "Pride and Prejudice",
+    year: "1813",
+    type: ["book"],
+  },
 ];

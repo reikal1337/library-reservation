@@ -14,11 +14,11 @@ const BookPage = () => {
   return (
     <div>
       <Modal
-        bodyClass="bg-white my-[10%] mx-auto p-5 w-[500px]  rounded-md flex justify-center items-center "
+        bodyClass="bg-white my-[10%]  mx-auto p-5 w-[500px]  rounded-md flex justify-center items-center "
         showModel={true}
         onClose={() => navigate("/")}
       >
-        <div className="flex gap-10 justify-center items-center">
+        <div className="flex text-blue-700 gap-10 justify-center items-center">
           <div className="max-w-[170px]">
             <BookListItem book={book[0]} />
           </div>

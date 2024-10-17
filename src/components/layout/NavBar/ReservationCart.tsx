@@ -22,7 +22,10 @@ const ReservationCart = () => {
         number={state.items.length}
         addClass="absolute -right-3 -top-3 z-10 "
       />
-      <ReservationCartButton className="text-4xl" onClick={handleOpenCart} />
+      <ReservationCartButton
+        className="text-4xl hover:text-blue-600 transition-colors duration-300"
+        onClick={handleOpenCart}
+      />
       <Modal
         showModel={showModel}
         backgroundClass="fixed inset-0 w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] "
