@@ -9,8 +9,8 @@ type Props = {
 const NavLinks = ({ className, activeClassName }: Props) => {
   return (
     <>
-      {navLinkList.map((link) => (
-        <li>
+      {navLinkList.map((link, i) => (
+        <li key={link.href + i}>
           <NavLink
             className={({ isActive }) => {
               return isActive ? activeClassName : className;

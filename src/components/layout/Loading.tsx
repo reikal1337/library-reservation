@@ -12,20 +12,20 @@ const Loading = ({ color }: Props) => {
         fy=".3125"
         gradientTransform="scale(1.5)"
       >
-        <stop offset="0" stop-color={color}></stop>
-        <stop offset=".3" stop-color={color} stop-opacity=".9"></stop>
-        <stop offset=".6" stop-color={color} stop-opacity=".6"></stop>
-        <stop offset=".8" stop-color={color} stop-opacity=".3"></stop>
-        <stop offset="1" stop-color={color} stop-opacity="0"></stop>
+        <stop offset="0" stopColor={color}></stop>
+        <stop offset=".3" stopColor={color} stopOpacity=".9"></stop>
+        <stop offset=".6" stopColor={color} stopOpacity=".6"></stop>
+        <stop offset=".8" stopColor={color} stopOpacity=".3"></stop>
+        <stop offset="1" stopColor={color} stopOpacity="0"></stop>
       </radialGradient>
       <circle
         transform-origin="center"
         fill="none"
         stroke="url(#a12)"
-        stroke-width="16"
-        stroke-linecap="round"
-        stroke-dasharray="200 1000"
-        stroke-dashoffset="0"
+        strokeWidth="16"
+        strokeLinecap="round"
+        strokeDasharray="200 1000"
+        strokeDashoffset="0"
         cx="100"
         cy="100"
         r="70"
@@ -46,8 +46,8 @@ const Loading = ({ color }: Props) => {
         fill="none"
         opacity=".2"
         stroke={color}
-        stroke-width="16"
-        stroke-linecap="round"
+        strokeWidth="16"
+        strokeLinecap="round"
         cx="100"
         cy="100"
         r="70"
