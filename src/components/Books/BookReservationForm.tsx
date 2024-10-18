@@ -10,7 +10,7 @@ type Props = {
 };
 
 const BookReservationForm = ({ book }: Props) => {
-  const [bookType, setBookType] = useState<BookType>(book.type[0]);
+  const [bookType, setBookType] = useState<BookType>(book.types[0]);
   const [quickPickup, setQuickPickup] = useState<boolean>(false);
   const [days, setDays] = useState<number>(1);
   const { addItem } = useReservationCart();
@@ -39,7 +39,7 @@ const BookReservationForm = ({ book }: Props) => {
           onChange={(e) => setBookType(e.target.value as BookType)}
           className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
         >
-          {book.type.map((type) => (
+          {book.types.map((type) => (
             <option key={type + book.id} value={type}>
               {capitalizeFirstLetter(type)}
             </option>

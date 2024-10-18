@@ -67,7 +67,7 @@ const Pagination = ({
     }
 
     if (!link.enabled) {
-      return "flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-gray-300 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ";
+      return "flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-gray-300 border border-gray-300  ";
     }
 
     return "cursor-pointer flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700";
