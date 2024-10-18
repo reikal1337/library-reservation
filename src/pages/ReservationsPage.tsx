@@ -5,7 +5,7 @@ import H1 from "../components/H1";
 import Loading from "../components/layout/Loading";
 import { useFetchReservations } from "../services/reservationApi";
 import Pagination from "../components/Pagination";
-import { displayErrors } from "../lib/utils/diplayError";
+import { displayErrors } from "../lib/utils/displayError";
 
 const ReservationsPage = () => {
   const { data, isLoading, errorMessages, totalAmountOfRecords } =
@@ -22,7 +22,7 @@ const ReservationsPage = () => {
   }, [totalAmountOfRecords, page]);
 
   if (errorMessages) {
-    displayErrors(["test", "hahah"]);
+    displayErrors(errorMessages);
   }
 
   if (isLoading) {

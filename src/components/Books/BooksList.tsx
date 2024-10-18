@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Pagination from "../Pagination";
 import SearchForm from "../SearchForm";
 import { useSearchParams } from "react-router-dom";
-import { displayErrors } from "../../lib/utils/diplayError";
+import { displayErrors } from "../../lib/utils/displayError";
 
 const BooksList = () => {
   const recordsPerPage = 4;
@@ -35,7 +35,7 @@ const BooksList = () => {
         updatedSearchParams.delete(key);
       }
     });
-
+    setPage(1);
     setSearchParams(updatedSearchParams);
   };
 

@@ -8,7 +8,7 @@ import RegularList from "../RegularList";
 import BookCartListItem from "../../Books/BookCartListItem";
 import { useCreateReservation } from "../../../services/reservationApi";
 import Loading from "../Loading";
-import { displayErrors } from "../../../lib/utils/diplayError";
+import { displayErrors } from "../../../lib/utils/displayError";
 
 const ReservationCart = () => {
   const { state, resetCart } = useReservationCart();
