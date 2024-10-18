@@ -1,14 +1,27 @@
-import React, { createContext, useReducer, useContext, useMemo } from "react";
+import React, {
+  createContext,
+  useReducer,
+  useContext,
+  useMemo,
+  useEffect,
+  useCallback,
+} from "react";
+import { useFetchReservationPrice } from "../../services/reservationApi";
+
+type RemoveItem = {
+  id: string;
+  type: BookType;
+};
 
 type ReservationCartAction =
   | { type: "ADD_ITEM"; payload: ReservationItem }
-  | { type: "REMOVE_ITEM"; payload: string }
+  | { type: "REMOVE_ITEM"; payload: RemoveItem }
   | { type: "UPDATE_TOTAL_PRICE"; payload: number };
 
 interface ReservationContextProps {
   state: ReservationCart;
   addItem: (item: ReservationItem) => void;
-  removeItem: (id: string) => void;
+  removeItem: (data: RemoveItem) => void;
   updateTotalPrice: () => void;
 }
 
@@ -31,10 +44,17 @@ const reservationReducer = (
         ...state,
         items: [...state.items, action.payload],
       };
+    //removes same book unless type is different.
     case "REMOVE_ITEM":
       return {
         ...state,
-        items: state.items.filter((item) => item.book.id !== action.payload),
+        items: state.items.filter(
+          (item) =>
+            !(
+              item.book.id === action.payload.id &&
+              item.type === action.payload.type
+            )
+        ),
       };
     case "UPDATE_TOTAL_PRICE":
       return {
@@ -50,28 +70,49 @@ export const ReservationCartProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   const [state, dispatch] = useReducer(reservationReducer, initialCartState);
+  const { postItems, newPrice } = useFetchReservationPrice();
 
-  const addItem = async (item: ReservationItem) => {
-    dispatch({ type: "ADD_ITEM", payload: { ...item } });
+  const addItem = async (newItem: ReservationItem) => {
+    //checks if it's in cart. Can be same book but different types.
+    const existingItem = state.items.find(
+      (item) => item.book.id === newItem.book.id && item.type === newItem.type
+    );
+
+    if (!existingItem) {
+      dispatch({
+        type: "ADD_ITEM",
+        payload: { ...newItem },
+      });
+      updateTotalPrice();
+    }
   };
 
-  const removeItem = async (id: string) => {
-    //should call APi to get new price....
-
-    dispatch({ type: "UPDATE_TOTAL_PRICE", payload: 0 });
-
-    dispatch({ type: "REMOVE_ITEM", payload: id });
+  const removeItem = async (data: RemoveItem) => {
+    dispatch({ type: "REMOVE_ITEM", payload: data });
+    updateTotalPrice();
   };
 
-  const updateTotalPrice = async () => {
-    //call api to recieve cart price.
-    const price = state.totalPrice + 5;
+  const updateTotalPrice = useCallback(() => {
+    postItems(state.items);
+  }, [state.items, postItems]);
 
-    dispatch({ type: "UPDATE_TOTAL_PRICE", payload: price });
-  };
+  useEffect(() => {
+    updateTotalPrice();
+  }, [state.items, updateTotalPrice]);
+
+  useEffect(() => {
+    if (newPrice !== undefined) {
+      dispatch({ type: "UPDATE_TOTAL_PRICE", payload: newPrice });
+    }
+  }, [newPrice]);
 
   const value = useMemo(
-    () => ({ state, addItem, removeItem, updateTotalPrice }),
+    () => ({
+      state,
+      addItem,
+      removeItem,
+      updateTotalPrice,
+    }),
     [state]
   );
 

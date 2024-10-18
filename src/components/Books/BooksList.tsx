@@ -6,7 +6,6 @@ import { useFetchBooks } from "../../services/bookApi";
 
 const BooksList = () => {
   const { books, isLoading, errorMessages } = useFetchBooks();
-
   if (isLoading) {
     return (
       <div className="h-56 w-56">

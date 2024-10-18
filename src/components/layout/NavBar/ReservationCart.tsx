@@ -8,11 +8,10 @@ import RegularList from "../RegularList";
 import BookCartListItem from "../../Books/BookCartListItem";
 
 const ReservationCart = () => {
-  const { state, updateTotalPrice } = useReservationCart();
+  const { state } = useReservationCart();
   const [showModel, setShowModel] = useState(false);
 
   const handleOpenCart = () => {
-    updateTotalPrice();
     setShowModel(true);
   };
 
@@ -45,7 +44,7 @@ const ReservationCart = () => {
                     itemComponent={BookCartListItem}
                   />
 
-                  <li className="flex w- flex-wrap gap-4 text-lg font-bold">
+                  <li className="flex w- flex-wrap gap-4 text-lg  font-bold">
                     Total sum{" "}
                     <span className="ml-auto mr-5">{state.totalPrice}</span>
                   </li>

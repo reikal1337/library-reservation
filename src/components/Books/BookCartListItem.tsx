@@ -25,7 +25,7 @@ const BookCartListItem = ({ item }: Props) => {
         </div>
       </div>
       <div className="mr-10">
-        <DeleteButton onClick={() => removeItem(book.id)} />
+        <DeleteButton onClick={() => removeItem({ id: book.id, type })} />
       </div>
     </>
   );
