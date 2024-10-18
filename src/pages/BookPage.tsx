@@ -12,8 +12,6 @@ const BookPage = () => {
   const { book, isLoading, errorMessages } = useFetchBookById(
     Number(params.bookId)
   );
-
-  console.log("book: ", book);
   return (
     <>
       <Modal

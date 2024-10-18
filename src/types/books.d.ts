@@ -12,3 +12,9 @@ type DisplayBook = {
 };
 
 type BookType = "book" | "audiobook";
+
+type SearchParams = {
+  year: number | null;
+  type: BookType | null;
+  name: string | null;
+};

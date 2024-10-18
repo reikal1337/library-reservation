@@ -40,7 +40,7 @@ const ReservationCart = () => {
                   <RegularList
                     items={state.items}
                     resourceName="item"
-                    itemClassName="flex h-full justify-center items-center"
+                    itemClassName="flex h-full justify-center items-center my-2"
                     itemComponent={BookCartListItem}
                   />
 

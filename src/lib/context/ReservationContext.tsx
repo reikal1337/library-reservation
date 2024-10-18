@@ -4,7 +4,6 @@ import React, {
   useContext,
   useMemo,
   useEffect,
-  useCallback,
 } from "react";
 import { useFetchReservationPrice } from "../../services/reservationApi";
 
@@ -44,7 +43,7 @@ const reservationReducer = (
         ...state,
         items: [...state.items, action.payload],
       };
-    //removes same book unless type is different.
+    //removes book by id unless type is different.
     case "REMOVE_ITEM":
       return {
         ...state,
@@ -66,6 +65,7 @@ const reservationReducer = (
   }
 };
 
+//reservation contextAPI to store items in cart and to get from API cart price.
 export const ReservationCartProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
@@ -92,17 +92,25 @@ export const ReservationCartProvider: React.FC<{
     updateTotalPrice();
   };
 
-  const updateTotalPrice = useCallback(() => {
-    postItems(state.items);
+  const updateTotalPrice = () => {
+    if (state.items.length == 0) {
+      dispatch({ type: "UPDATE_TOTAL_PRICE", payload: 0 });
+      return;
+    } else {
+      postItems(state.items);
+    }
+  };
+
+  //useeffect checks for item or price change to update it.
+  useEffect(() => {
+    updateTotalPrice();
   }, [state.items, postItems]);
 
   useEffect(() => {
-    updateTotalPrice();
-  }, [state.items, updateTotalPrice]);
-
-  useEffect(() => {
-    if (newPrice !== undefined) {
-      dispatch({ type: "UPDATE_TOTAL_PRICE", payload: newPrice });
+    if (state.items.length > 0) {
+      if (newPrice !== undefined) {
+        dispatch({ type: "UPDATE_TOTAL_PRICE", payload: newPrice });
+      }
     }
   }, [newPrice]);
 
