@@ -32,13 +32,14 @@ const BooksList = () => {
 
   return (
     <>
+      <p className="">Total books: {totalAmountOfRecords}</p>
       <Pagination
         currentPage={page}
         totalAmountOfPages={totalAmountOfPages}
         onChange={(newPage) => setPage(newPage)}
         radio={2}
       />
-      <ul className="w-3/5 grid grid-cols-4 ">
+      <ul className="w-3/5 grid grid-cols-4 mt-10">
         {books && books.length > 0 ? (
           <LinkList
             toLink="/book/"
