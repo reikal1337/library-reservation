@@ -13,7 +13,7 @@ const BooksList = () => {
   const [page, setPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const { books, isLoading, errorMessages, totalAmountOfRecords } =
+  const { data, isLoading, errorMessages, totalAmountOfRecords } =
     useFetchBooks(page, recordsPerPage, searchParams);
 
   const [totalAmountOfPages, setTotalAmountOfPages] = useState(1);
@@ -58,10 +58,10 @@ const BooksList = () => {
         radio={2}
       />
       <ul className="w-11/12 justify-center grid grid-cols sm:grid-cols-2 md:grid-cols-3 md:w-4/5 lg:w-3/5 lg:grid-cols-4 mt-10">
-        {books && books.length > 0 ? (
+        {data && data.length > 0 ? (
           <LinkList
             toLink="/book/"
-            items={books}
+            items={data}
             resourceName="book"
             itemComponent={BookListItem}
             itemClassName="w-[170px] p-2 transition-shadow duration-300 hover:shadow-xl cursor-pointer"

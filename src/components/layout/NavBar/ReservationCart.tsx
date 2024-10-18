@@ -56,13 +56,13 @@ const ReservationCart = () => {
             <div className="flex items-center gap-4 text-gray-800">
               {/* // */}
               <div className="p-6 absolute bottom-0 w-full border-t bg-white">
-                <ul className="text-gray-800 divide-y">
+                <ul className="text-gray-800 divide-y ">
                   {!isLoading ? (
                     <>
                       <RegularList
                         items={state.items}
                         resourceName="item"
-                        itemClassName="flex h-full justify-center items-center my-2"
+                        itemClassName="flex h-full justify-center items-center my-2 "
                         itemComponent={BookCartListItem}
                       />
 

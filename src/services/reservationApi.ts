@@ -1,5 +1,5 @@
-import { useMutation } from "react-query";
-import axiosInstance from "./endpoints";
+import { useMutation, useQueryClient } from "react-query";
+import axiosInstance, { useFetchArray } from "./endpoints";
 import { AxiosError, AxiosResponse } from "axios";
 import { handleAxiosError } from "../lib/utils/handleErrors";
 
@@ -52,6 +52,8 @@ export const postReservation = async (
 };
 
 export const useCreateReservation = () => {
+  const queryClient = useQueryClient();
+
   const {
     mutate: createReservation,
     isLoading,
@@ -59,7 +61,12 @@ export const useCreateReservation = () => {
     isError,
     error,
   } = useMutation<AxiosResponse, AxiosError, CreateReservation>(
-    postReservation
+    postReservation,
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("reservation");
+      },
+    }
   );
 
   let errorMessages: string[] = [];
@@ -70,3 +77,7 @@ export const useCreateReservation = () => {
 
   return { createReservation, isLoading, isSuccess, isError, errorMessages };
 };
+
+export function useFetchReservations(page: number, recordsPerPage: number) {
+  return useFetchArray<Reservation>(page, recordsPerPage, null, "reservation");
+}

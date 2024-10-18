@@ -21,3 +21,9 @@ type CreateReservationItem = {
 type CreateReservation = {
   items: CreateReservationItem[];
 };
+
+type Reservation = {
+  id: string;
+  reservationItems: ReservationItem[];
+  totalPrice: number;
+};

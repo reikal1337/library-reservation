@@ -1,7 +1,6 @@
 import { useReservationCart } from "../../lib/context/ReservationContext";
-import { capitalizeFirstLetter } from "../../lib/utils/stringFormation";
 import DeleteButton from "../buttons/DeleteButton";
-import BookListItem from "./BookListItem";
+import BookCartCard from "./BookCartCard";
 
 type Props = {
   item: ReservationItem;
@@ -13,17 +12,12 @@ const BookCartListItem = ({ item }: Props) => {
 
   return (
     <>
-      <div>
-        <BookListItem imageWidth={85} imageHeight={115} book={book} />
-      </div>
-      <div className="text-2xl font-semibold h-full w-full flex flex-col justify-center items-center ">
-        <div>
-          {quickPickUp && <p className="">&#9737;Quick Pick Up</p>}
-          <p className="">&#9737;{capitalizeFirstLetter(type)}</p>
-
-          <p className="">&#9737;For {days} days</p>
-        </div>
-      </div>
+      <BookCartCard
+        book={book}
+        quickPickUp={quickPickUp}
+        type={type}
+        days={days}
+      />
       <div className="mr-10">
         <DeleteButton onClick={() => removeItem({ id: book.id, type })} />
       </div>
