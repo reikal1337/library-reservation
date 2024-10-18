@@ -1,56 +1,50 @@
-# Library Reservation System - Backend
+# Library Reservation System - Frontend
 
-This project is the backend part of the Library Reservation System, built using **ASP.NET Core 8** with **C#**. The backend is structured using the **Clean Architecture** design pattern and provides all necessary endpoints for book retrieval, reservations, and business logic for pricing.
+This project is the frontend part of the Library Reservation System, built using **React** with **Vite**, **Tailwind CSS**, **react-query**, **axios**, and **TypeScript**. The application allows users to view and reserve books, search through available titles, and check their reservations.
 
 ## How to Run
 
 To run this project locally:
 
-    gh repo clone reikal1337/library-reservationAPI
+```bash
+gh repo clone reikal1337/library-reservation
+cd dir
+npm install
+npm run dev
 
-The app will be running at `http://localhost:5144`
+```
 
-### .Env
+The app will start running at `http://localhost:5173`
+
+### Env
 
     	file: .env
     	VITE_BACK_API_URL=http://localhost:5144/api
 
+
 ## Project Overview
 
-The backend handles the core logic for the Library Reservation System. It includes the following features:
+This project fulfills the technical requirements by implementing the following key features:
 
-- **Book List API**: An endpoint to fetch a paginated list of books with search functionality by name, type, and year.
-- **Reservation API**: An endpoint where users can reserve books by submitting details such as type (Book or Audiobook), days reserved, and quick pickup.
-- **Pricing Logic**: All reservation pricing is calculated based on book type and days. Discounts apply for longer reservations:
-  - 3 days: 10% off
+- **Book List View**: Displays a paginated list of books available in the library, with each book showing its name, picture, and year.
+- **Search Functionality**: Users can search for books by title, year, and type (Book or Audiobook).
+- **Reservation Process**: Users can select options such as book type, quick pickup, and the number of days for a reservation.
+- **Cart Management**: Users can add multiple books to their cart and finalize reservations. Each reservation applies a service fee, with the book prices calculated based on type and the number of days.
+- **Reservations View**: Users can view their reservations in a paginated list, with each reservation showing the included books and pricing details.
 
-  - 10 days: 20% off
-  - Quick pickup adds a €5 fee to the reservation.
-  - A base service fee of €3 is applied to every reservation.
-  - Book (€2/day)
-  - Audiobook (€3/day).
-- **Database**: An in-memory EF Core database is used to store books and reservations. This is suitable for the demo but not for production.
+### Technical Details
 
-### Architecture
+- **State Management**: Context API was used for state management since the state requirements are minimal and using more complex solutions (e.g., Redux) would be overkill.
+- **API Integration**: The frontend communicates with the backend API using `axios` and leverages `react-query` to handle data fetching, caching, and error handling.
+- **Pagination & Modal**: Books are displayed with pagination. A modal appears when a user clicks on a book, allowing them to make a reservation.
 
-This project follows **Clean Architecture** principles, ensuring clear separation between core business logic and the infrastructure. Key layers include:
+### Notes on the Implementation
 
-- **Domain Layer**: Contains core entities and business rules.
-- **Application Layer**: Handles all use cases and business logic, including services, DTOs, and mappers (using **AutoMapper**).
-- **Infrastructure Layer**: Implements the EF Core repository for books and reservations.
-- **API Layer**: Provides the RESTful API interface.
+- This is not a production-ready project but meets the core technical requirements outlined in the brief.
+- The search functionality is linked directly to the URL, allowing users to share specific search results and book details.
+- A book can be shared trough link, as each book has its own link.
+- All calculation logic is implemented in the backend API to ensure consistent results.
 
-### Dependency Injection & AutoMapper
+## Known Limitations
 
-- **Dependency Injection**: Used throughout the project for repositories and services, ensuring loosely coupled components.
-- **AutoMapper**: Handles mapping between entities and DTOs, simplifying object transformation across layers.
--
-
-### Known Limitations
-
-- **Unit Testing**: Unit tests have not been implemented for the backend.
-- **In-Memory Database**: The current use of an in-memory database limits the persistence beyond runtime, and it is not suitable for production.
-
-## Notes on the Implementation
-
-- The project fulfills the "Technical Requirements" fully, although the "Functional Requirements" have been slightly adapted. For example, users can add multiple books to a reservation, and pricing is calculated for each book with only one service fee applied per reservation.
+- **Simple State Management**: Given the minimal requirements, Context API was chosen over more robust solutions.
