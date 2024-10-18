@@ -25,14 +25,7 @@ export const useFetchReservationPrice = () => {
     isLoading,
     isError,
     error,
-  } = useMutation<number, AxiosError, ReservationItem[]>(
-    fetchReservationPrice,
-    {
-      onSuccess: (data) => {
-        console.log("New Price:", data);
-      },
-    }
-  );
+  } = useMutation<number, AxiosError, ReservationItem[]>(fetchReservationPrice);
 
   let errorMessages: string[] = [];
 

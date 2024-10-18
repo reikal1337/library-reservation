@@ -46,7 +46,9 @@ const ReservationCart = () => {
 
                   <li className="flex w- flex-wrap gap-4 text-lg  font-bold">
                     Total sum{" "}
-                    <span className="ml-auto mr-5">{state.totalPrice}</span>
+                    <span className="ml-auto mr-5">
+                      {state.totalPrice}&#8364;
+                    </span>
                   </li>
                 </ul>
                 <PrimaryButton onClick={() => console.log("Submiting")}>
