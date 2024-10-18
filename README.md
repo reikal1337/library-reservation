@@ -10,10 +10,6 @@ To run this project locally:
 
 The app will be running at `http://localhost:5144`
 
-### .Env
-
-    	file: .env
-    	VITE_BACK_API_URL=http://localhost:5144/api
 
 ## Project Overview
 
