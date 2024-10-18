@@ -21,7 +21,6 @@ The app will start running at `http://localhost:5173`
     	file: .env
     	VITE_BACK_API_URL=http://localhost:5144/api
 
-
 ## Project Overview
 
 This project fulfills the technical requirements by implementing the following key features:
