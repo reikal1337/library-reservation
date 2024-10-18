@@ -15,13 +15,15 @@ type RemoveItem = {
 type ReservationCartAction =
   | { type: "ADD_ITEM"; payload: ReservationItem }
   | { type: "REMOVE_ITEM"; payload: RemoveItem }
-  | { type: "UPDATE_TOTAL_PRICE"; payload: number };
+  | { type: "UPDATE_TOTAL_PRICE"; payload: number }
+  | { type: "RESET" };
 
 interface ReservationContextProps {
   state: ReservationCart;
   addItem: (item: ReservationItem) => void;
   removeItem: (data: RemoveItem) => void;
   updateTotalPrice: () => void;
+  resetCart: () => void;
 }
 
 const ReservationCart = createContext<ReservationContextProps | undefined>(
@@ -60,6 +62,9 @@ const reservationReducer = (
         ...state,
         totalPrice: action.payload,
       };
+
+    case "RESET":
+      return initialCartState;
     default:
       return state;
   }
@@ -85,6 +90,9 @@ export const ReservationCartProvider: React.FC<{
       });
       updateTotalPrice();
     }
+  };
+  const resetCart = () => {
+    dispatch({ type: "RESET" });
   };
 
   const removeItem = async (data: RemoveItem) => {
@@ -120,6 +128,7 @@ export const ReservationCartProvider: React.FC<{
       addItem,
       removeItem,
       updateTotalPrice,
+      resetCart,
     }),
     [state]
   );

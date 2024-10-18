@@ -10,3 +10,14 @@ type ReservationItem = {
   days: number;
   quickPickUp: boolean;
 };
+
+type CreateReservationItem = {
+  bookId: string;
+  type: BookType;
+  days: number;
+  quickPickUp: boolean;
+};
+
+type CreateReservation = {
+  items: CreateReservationItem[];
+};

@@ -57,7 +57,7 @@ const BooksList = () => {
         onChange={(newPage) => setPage(newPage)}
         radio={2}
       />
-      <ul className="w-3/5 grid grid-cols-4 mt-10">
+      <ul className="w-11/12 justify-center grid grid-cols sm:grid-cols-2 md:grid-cols-3 md:w-4/5 lg:w-3/5 lg:grid-cols-4 mt-10">
         {books && books.length > 0 ? (
           <LinkList
             toLink="/book/"
