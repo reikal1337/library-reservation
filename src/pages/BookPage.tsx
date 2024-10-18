@@ -3,8 +3,8 @@ import Modal from "../components/layout/Modal";
 import BookListItem from "../components/Books/BookListItem";
 import BookReservationForm from "../components/Books/BookReservationForm";
 import { useFetchBookById } from "../services/bookApi";
-import DisplayErrors from "../components/DisplayErrors";
 import Loading from "../components/layout/Loading";
+import { displayErrors } from "../lib/utils/diplayError";
 
 const BookPage = () => {
   const params = useParams<{ bookId: string }>();
@@ -12,6 +12,10 @@ const BookPage = () => {
   const { book, isLoading, errorMessages } = useFetchBookById(
     Number(params.bookId)
   );
+
+  if (errorMessages) {
+    displayErrors(errorMessages);
+  }
   return (
     <>
       <Modal
@@ -34,7 +38,6 @@ const BookPage = () => {
           </div>
         )}
       </Modal>
-      <DisplayErrors errors={errorMessages} />
     </>
   );
 };

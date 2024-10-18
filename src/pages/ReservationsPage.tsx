@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Accordion from "../components/Accordion";
 import BookCartCard from "../components/Books/BookCartCard";
-import DisplayErrors from "../components/DisplayErrors";
 import H1 from "../components/H1";
 import Loading from "../components/layout/Loading";
 import { useFetchReservations } from "../services/reservationApi";
 import Pagination from "../components/Pagination";
+import { displayErrors } from "../lib/utils/diplayError";
 
 const ReservationsPage = () => {
   const { data, isLoading, errorMessages, totalAmountOfRecords } =
@@ -20,6 +20,10 @@ const ReservationsPage = () => {
       setTotalAmountOfPages(Math.ceil(totalAmountOfRecords / recordsPerPage));
     }
   }, [totalAmountOfRecords, page]);
+
+  if (errorMessages) {
+    displayErrors(["test", "hahah"]);
+  }
 
   if (isLoading) {
     return (
@@ -64,7 +68,7 @@ const ReservationsPage = () => {
           )}
         />
       )}
-      <DisplayErrors errors={errorMessages} />
+      {/* <DisplayErrors errors={errorMessages} /> */}
     </>
   );
 };

@@ -1,12 +1,12 @@
 import BookListItem from "./BookListItem";
 import LinkList from "../layout/LinkList";
 import Loading from "../layout/Loading";
-import DisplayErrors from "../DisplayErrors";
 import { useFetchBooks } from "../../services/bookApi";
 import { useEffect, useState } from "react";
 import Pagination from "../Pagination";
 import SearchForm from "../SearchForm";
 import { useSearchParams } from "react-router-dom";
+import { displayErrors } from "../../lib/utils/diplayError";
 
 const BooksList = () => {
   const recordsPerPage = 4;
@@ -38,6 +38,10 @@ const BooksList = () => {
 
     setSearchParams(updatedSearchParams);
   };
+
+  if (errorMessages) {
+    displayErrors(errorMessages);
+  }
 
   if (isLoading) {
     return (
@@ -72,7 +76,6 @@ const BooksList = () => {
           </h2>
         )}
       </ul>
-      <DisplayErrors errors={errorMessages} />
     </>
   );
 };

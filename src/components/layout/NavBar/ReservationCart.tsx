@@ -8,7 +8,7 @@ import RegularList from "../RegularList";
 import BookCartListItem from "../../Books/BookCartListItem";
 import { useCreateReservation } from "../../../services/reservationApi";
 import Loading from "../Loading";
-import DisplayErrors from "../../DisplayErrors";
+import { displayErrors } from "../../../lib/utils/diplayError";
 
 const ReservationCart = () => {
   const { state, resetCart } = useReservationCart();
@@ -33,7 +33,11 @@ const ReservationCart = () => {
     if (isSuccess) {
       resetCart();
     }
-  }, [isSuccess, resetCart]);
+  }, [isSuccess]);
+
+  if (errorMessages) {
+    displayErrors(errorMessages);
+  }
 
   return (
     <div className="relative bg-opacity-45 bg-yellow-50">
@@ -85,7 +89,6 @@ const ReservationCart = () => {
           </div>
         </>
       </Modal>
-      <DisplayErrors errors={errorMessages} />
     </div>
   );
 };

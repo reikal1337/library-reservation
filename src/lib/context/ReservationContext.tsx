@@ -97,7 +97,6 @@ export const ReservationCartProvider: React.FC<{
 
   const removeItem = async (data: RemoveItem) => {
     dispatch({ type: "REMOVE_ITEM", payload: data });
-    updateTotalPrice();
   };
 
   const updateTotalPrice = () => {
@@ -112,7 +111,7 @@ export const ReservationCartProvider: React.FC<{
   //useeffect checks for item or price change to update it.
   useEffect(() => {
     updateTotalPrice();
-  }, [state.items, postItems]);
+  }, [state.items]);
 
   useEffect(() => {
     if (state.items.length > 0) {
